@@ -1,0 +1,22 @@
+<h4>所有卡</h4>
+
+<table>
+  <tr>
+    <td>卡名</td>
+    <td>卡的描述</td>
+  </tr>
+  <% @cards.each do |card| %>
+  <tr>
+    <td><%= card.name %></td>
+    <td><%= card.desc %></td>
+  </tr>
+  <% end %>
+</table>
+
+<div class="">
+  <%= form_for :card, url: cards_path(:card) do |f| %>
+    <%= f.text_field :name %>
+    <%= f.text_field :desc %>
+    <%= f.submit "new card" %>
+  <% end %>
+</div>
