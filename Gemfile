@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 2.5'
 
 # for authentication user
 gem 'devise'
+# for user upload QR_code
+gem 'carrierwave', '~> 1.0'
+gem 'rmagick', require: 'RMagick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
@@ -42,8 +45,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
   gem 'pry'
+  gem 'selenium-webdriver'
 end
 
 group :development do

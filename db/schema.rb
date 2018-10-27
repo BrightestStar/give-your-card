@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181027031344) do
+ActiveRecord::Schema.define(version: 20181027082807) do
 
   create_table "card_record_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "receive_card_user_id"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20181027031344) do
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "interactive_id"
+  end
+
+  create_table "interactives", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,6 +59,8 @@ ActiveRecord::Schema.define(version: 20181027031344) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "interactive_id"
+    t.string "qr_code"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
