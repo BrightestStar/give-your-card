@@ -11,7 +11,11 @@
 活动人员：
 <div class="">
   <% @interactive.users.each do |user|%>
-    <%= user.name %><br>
+    <%= user.name %>
+    <% user.user_wallet.kinds_and_types.each do |key, value| %>
+      <%= key %>
+      <%= value %>
+    <%end %>
   <% end %>
 </div>
 <br>
@@ -41,9 +45,11 @@
 <% end %>
 <br>
 
-<%= form_for @interactive, url: afford_card_interactive_path(@interactive), method: :post do |f| %>
-  <%= select_tag(:card_id, options_for_select(Card.all.map{|c| [c.name, c.id]})) %>
-  <%= f.submit 'add card to active' %>
+<%= form_for :card_record_lists, url: afford_card_interactive_path(@interactive), method: :post do |f| %>
+  <%= f.select(:card_id, options_for_select(@cards.map{|c| [c.name, c.id]})) %>
+  <%= f.select(:receive_card_user_id, options_for_select(@interactive.users.map{|u| [u.name, u.id] unless u == current_user})) %>
+  <%= f.text_field :cause %>
+  <%= f.submit 'pay card' %>
 <% end %>
 <br>
 

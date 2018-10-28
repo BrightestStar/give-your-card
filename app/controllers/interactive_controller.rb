@@ -36,9 +36,21 @@ class InteractiveController < ApplicationController
                           card_id: params[:card_id])
   end
 
+  def afford_card
+    crl = CardRecordList.create(list_params)
+    crl.interactive = @interactive
+    crl.afford_card_user_id = current_user.id
+    crl.save
+    UserWallet.check_card(crl)
+  end
+
   private
 
   def find_interactive
     @interactive = Interactive.find(params[:id])
+  end
+
+  def list_params
+    params.require(:card_record_lists).permit(:receive_card_user_id, :cause, :card_id)
   end
 end
