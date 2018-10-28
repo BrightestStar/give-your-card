@@ -1,1 +1,50 @@
-<%= @interactive.id  %>
+活动状态：
+<div class="">
+  <%= @interactive.status %>
+</div>
+<br>
+队长：
+<div class="">
+  <%= @interactive.admin_user.name %>
+</div>
+<br>
+活动人员：
+<div class="">
+  <% @interactive.users.each do |user|%>
+    <%= user.name %><br>
+  <% end %>
+</div>
+<br>
+收款码：
+<div class="">
+  <%= image_tag(@interactive.admin_user.qr_code) %>
+</div>
+<br>
+
+本活动集卡：
+<div class="">
+  <% if @cards.present? %>
+      <% @cards.each do |card| %>
+        <tr>
+          <%= card.name %>
+          <%= card.desc %>
+        </tr>
+        <br>
+      <% end %>
+  <% end %>
+</div>
+<br>
+
+<%= form_for @interactive, url: add_card_interactive_path(@interactive), method: :post do |f| %>
+  <%= select_tag(:card_id, options_for_select(Card.all.map{|c| [c.name, c.id]})) %>
+  <%= f.submit 'add card to active' %>
+<% end %>
+<br>
+
+<%= form_for @interactive, url: afford_card_interactive_path(@interactive), method: :post do |f| %>
+  <%= select_tag(:card_id, options_for_select(Card.all.map{|c| [c.name, c.id]})) %>
+  <%= f.submit 'add card to active' %>
+<% end %>
+<br>
+
+<%= link_to 'join active', join_active_interactive_path(@interactive), method: :post %>

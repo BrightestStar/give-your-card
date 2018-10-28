@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181027082807) do
+ActiveRecord::Schema.define(version: 20181028052450) do
+
+  create_table "card_active_ships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "card_id"
+    t.string "interactive_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "card_record_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "receive_card_user_id"
@@ -26,13 +33,13 @@ ActiveRecord::Schema.define(version: 20181027082807) do
     t.string "desc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "interactive_id"
   end
 
   create_table "interactives", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
   end
 
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

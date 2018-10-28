@@ -1,3 +1,16 @@
-<%= Interactive.all.count %>
+<div class="">
+  <table>
+    <tr>
+      <td>名称</td>
+      <td>状态</td>
+    </tr>
+    <% @interactive.each do |active|%>
+      <tr>
+        <td><%= link_to "#{active.title}", interactive_path(active) %></td>
+        <td><%= active.status %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
 <%= link_to 'new active', interactive_index_path, method: :post %>
