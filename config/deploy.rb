@@ -1,8 +1,9 @@
-# config valid for current version and patch releases of Capistrano
 sh "ssh-add"
+
+# config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-set :application, 'give-your-card'
+set :application, 'mycards'
 set :repo_url, 'git@github.com:BrightestStar/give-your-card.git'
 
 # Default branch is :master
