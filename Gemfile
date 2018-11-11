@@ -52,6 +52,8 @@ group :development, :test do
   gem 'pry'
   gem 'rubocop', require: false
   gem 'selenium-webdriver'
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
 end
 
 group :development do
